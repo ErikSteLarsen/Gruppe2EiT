@@ -11,9 +11,9 @@ class Lastebil:
         URL = baseLink + RegNR
         r = requests.get(url = URL)
         data = r.json()
-        for key in data:
-            print(key, data[key])
-            #print(data)
+
+        #for key in data:
+            #print(data[key])
 
         self.lengde = data['tekniskKjoretoy']['lengde']
         self.bredde = data['tekniskKjoretoy']['bredde']
@@ -25,12 +25,30 @@ class Lastebil:
         self.tillattTilhengervektMedBrems = data['tekniskKjoretoy']['lastegenskaper']['tillattTilhengervektMedBrems']
         self.tillattTilhengervektUtenBrems = data['tekniskKjoretoy']['lastegenskaper']['tillattTilhengervektUtenBrems']
 
-
+        # Antall aksler
         self.antallAksler = len(data['tekniskKjoretoy']['aksler']['aksler'])
-        print(self.antallAksler)
-        # Aksler
-        print(data['tekniskKjoretoy']['aksler']['aksler'])
+
+        # Denne returnerer et array med en dictionary per aksel, gå inn via "self.aksler[nummer].avstandtilNesteAksel" feks
+        self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
+
+
+    def getWeightDistribution(self):
+        position = 0
+        akselInfo = []
+        avstandTilNesteAksel = 0
+        for aksel in range(self.antallAksler):
+            akselInfo.append((avstandTilNesteAksel, self.aksler[aksel]['tillattLast']))
+            avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
+
+        #for num in range(len(akselInfo)):
+            #print("Avstand mellom aksel:", num+1, "og", num+2, "=", akselInfo[num][0])
+
+        #for num in range(len(akselInfo)):
+            #print("Tillatt last på aksel:", num+1,"=", akselInfo[num][1])
+
+        return akselInfo
 
 
 
-        print("lengde:", self.lengde)
+
+
