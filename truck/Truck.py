@@ -2,7 +2,7 @@ import numpy as np
 
 import requests
 
-class Lastebil:
+class Truck:
 
     # RegNR er en string
     def __init__(self, RegNR):
