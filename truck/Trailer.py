@@ -34,7 +34,7 @@ class Trailer:
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):
-            akselInfo.append((avstandTilNesteAksel, self.aksler[aksel]['tillattLast']))
+            akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
             avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
 
         #for num in range(len(akselInfo)):
