@@ -1,11 +1,12 @@
 import numpy as np
 
+import json
 import requests
 
 class Truck:
 
     # RegNR er en string
-    def __init__(self, RegNR):
+    def __init__(self, RegNR, Trailer):
 
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
@@ -32,13 +33,17 @@ class Truck:
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
 
 
+
     def getWeightDistribution(self):
-        position = 0
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):
-            akselInfo.append((avstandTilNesteAksel, self.aksler[aksel]['tillattLast']))
+            akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
             avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
+
+        if akselInfo[0][1] == None and len(akselInfo) == 3:
+            akselInfo[0][1] = self.tillattTotalvekt - (akselInfo[1][1] + akselInfo[2][1])
+
 
         #for num in range(len(akselInfo)):
             #print("Avstand mellom aksel:", num+1, "og", num+2, "=", akselInfo[num][0])
@@ -47,6 +52,8 @@ class Truck:
             #print("Tillatt last på aksel:", num+1,"=", akselInfo[num][1])
 
         return akselInfo
+
+
 
 
 
