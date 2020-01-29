@@ -3,10 +3,12 @@ import numpy as np
 import json
 import requests
 
+from Trailer import Trailer
+
 class Truck:
 
     # RegNR er en string
-    def __init__(self, RegNR, Trailer):
+    def __init__(self, RegNR, trailerRegNR=None):
 
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
@@ -31,6 +33,10 @@ class Truck:
 
         # Denne returnerer et array med en dictionary per aksel, gå inn via "self.aksler[nummer].avstandtilNesteAksel" feks
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
+        if Trailer==None:
+            self.trailer=None
+        else:
+            self.trailer = Trailer(trailerRegNR)
 
 
 

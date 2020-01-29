@@ -1,6 +1,10 @@
 from Truck import Truck
 from Trailer import Trailer
 
+lastebil = "DP51062"
+henger = "NP5841"
+
 if __name__ == '__main__':
-    trailer = Trailer('NP5841')
-    print(trailer.getWeightDistribution())
+    truck = Truck(lastebil,henger)
+    print(truck.getWeightDistribution())
+    print(truck.trailer.getWeightDistribution())
