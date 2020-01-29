@@ -39,8 +39,7 @@ class Truck:
             self.trailer = Trailer(trailerRegNR)
 
 
-
-    def getWeightDistribution(self):
+    def getMaxAxelWeights(self):
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):
@@ -50,7 +49,6 @@ class Truck:
         if akselInfo[0][1] == None and len(akselInfo) == 3:
             akselInfo[0][1] = self.tillattTotalvekt - (akselInfo[1][1] + akselInfo[2][1])
 
-
         #for num in range(len(akselInfo)):
             #print("Avstand mellom aksel:", num+1, "og", num+2, "=", akselInfo[num][0])
 
@@ -59,9 +57,14 @@ class Truck:
 
         return akselInfo
 
+    def getNumberOfAxles(self):
+        return self.antallAksler
 
 
+    def getMaxTotalWeight(self):
+        return self.tillattTotalvekt
 
-
+    def getTillattVogntogVekt(self):
+        return self.tillattVogntogvekt
 
 

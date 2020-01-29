@@ -15,6 +15,7 @@ class Trailer:
         #for key in data:
             #print(data[key])
 
+
         self.lengde = data['tekniskKjoretoy']['lengde']
         self.bredde = data['tekniskKjoretoy']['bredde']
         self.egenvekt = data['tekniskKjoretoy']['lastegenskaper']['egenvekt']
