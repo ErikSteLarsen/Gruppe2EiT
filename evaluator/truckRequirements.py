@@ -40,11 +40,12 @@ def exceedWeightOnOneOfAxels(Truck, TruckMeasurement):
 
 
 
-
-
 #The following code add the functions to a Truck Requirements Object
 
 def addAllTruckRequirements():
     print("Adding truck requirements\n")
     addTruckRequirement("EnoughWeightOnFrontAxle",hasFrontAxleEnoughWeight, "Front axle does not have 20% of total weight")
+    addTruckRequirement("TotalWeightCheck", exceedsTotalWeight,"Total weight is exceeded")
+    addTruckRequirement("CheckingWeightOnEveryAxle", hasFrontAxleEnoughWeight, "One of the axels is overloaded!")
+
 
