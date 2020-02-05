@@ -22,12 +22,11 @@ def hasFrontAxleEnoughWeight(Truck, TruckMeasurement):
     """
     This function will check if the front axle has at least 20% of the total weight
 
-    Return: True if test pass, false if test fail
+    Return: true if test pass, false if test fail
     """
 
 """
 ---------------------------
 The following code add the functions to a Truck Requirements Object
 """
-addTruckRequirement("FrontAxleWeight20%", hasFrontAxleEnoughWeight,  "Front axle weight is too low")
-
+addTruckRequirement("EnoughWeightOnFrontAxle", "Front axle does not have 20% of total weight", hasFrontAxleEnoughWeight)
