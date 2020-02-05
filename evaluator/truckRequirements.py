@@ -1,12 +1,24 @@
 
+
+from Measurement import TruckMeasurement
 import Requirement
 
 truckRequirements = []
 
-def addTruckRequirement(requirementName, errorMessage="No error message added", function):
+def addTruckRequirement(requirementName, function, errorMessage="No error message added"):
 	truckRequirements.append(Requirement(errorMessage, requirementName, function))
 
-def hasFrontAxleEnoughWeight(Truck, Measurement):
+def hasFrontAxleEnoughWeight(Truck, TruckMeasurement):
+    axleWeights = TruckMeasurement.getMeasuredAxleWeights()
+    sum_weight = 0
+    for weight in axleWeights:
+        sum_weight += weight
+    if axleWeights[0]/sum_weight < 0.2:
+        return False
+    return True
+
+
+
     """
     This function will check if the front axle has at least 20% of the total weight
 
@@ -17,5 +29,5 @@ def hasFrontAxleEnoughWeight(Truck, Measurement):
 ---------------------------
 The following code add the functions to a Truck Requirements Object
 """
-addTruckRequirement(hasFrontAxleEnoughWeight, "FrontAxleWeight20%" ,  "Front axle weight is too low")
+addTruckRequirement("FrontAxleWeight20%", hasFrontAxleEnoughWeight,  "Front axle weight is too low")
 

@@ -1,4 +1,4 @@
-from ../truck import Truck
+from ../Truck import Truck
 """
 This file include functions for checking that different requirements for the truck axle weights are met
 
