@@ -33,7 +33,8 @@ class Truck:
 
         # Denne returnerer et array med en dictionary per aksel, gå inn via "self.aksler[nummer].avstandtilNesteAksel" feks
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
-        if Trailer==None:
+        if trailerRegNR is None:
+            print("None")
             self.trailer=None
         else:
             self.trailer = Trailer(trailerRegNR)
