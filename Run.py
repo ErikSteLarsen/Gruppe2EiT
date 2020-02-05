@@ -18,4 +18,5 @@ if __name__ == '__main__':
     simulated[0]=5500
     measurement.setAxleWeight(simulated)
 
-    Evaluator.assert_requirements(truck, measurement)
+    results = Evaluator.assert_requirements(truck, measurement)
+    print("Results: %a" % results)
