@@ -1,5 +1,3 @@
-from truck.Truck import Truck
-
 """
 This file include functions for checking that different requirements for the truck axle weights are met
 
@@ -18,7 +16,7 @@ class Requirement:
         self.errorMessage = errorMessage
         self.requirementName = requirementName
 
-    def testRequirement(self, Truck, Measurement):
+    def testRequirement(self, truck, measurement):
         """
         Run test for specified requirement object on Truck object.
         
@@ -27,10 +25,9 @@ class Requirement:
         Return: True/false based on pass/fail.
 
         """
-        if (self.function(Truck, Measurement)):
+
+        if (self.function(truck, measurement)):
             return True
         else:
             print(self.errorMessage)
             return False
-
-   
