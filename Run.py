@@ -1,23 +1,21 @@
 #from truck.Truck import Truck
-from evaluator import truckRequirements
+from truck.Truck import Truck
 from Measurement import TruckMeasurement
-from truck import Truck
-from simulator import Simulator
-
-Truck1 = Truck.Truck("kh65201")
-Measurement1 = TruckMeasurement()
-
-#truckRequirements.addAllTruckRequirements()
-#truckRequirements.truckRequirements[0].testRequirement(Truck1, Measurement1)
+from evaluator.evaluator import Evaluator
+from simulator.Simulator import Simulator
 
 lastebil = "DP51062"
 henger = "NP5841"
 
-truck=Truck.Truck(lastebil,henger)
-measurement=TruckMeasurement()
-simulator=Simulator.Simulator(truck)
-simulated=simulator.calculateWeights()
-simulated[0]=5500
-measurement.setAxleWeight(simulated)
-truckRequirements.addAllTruckRequirements()
-truckRequirements.truckRequirements[0].testRequirement(truck, measurement)
+if __name__ == '__main__':
+    truck = Truck(lastebil, henger)
+    print(truck.getMaxAxelWeights())
+    print(truck.trailer.getWeightDistribution())
+
+    measurement=TruckMeasurement()
+    simulator=Simulator(truck)
+    simulated=simulator.calculateWeights()
+    simulated[0]=5500
+    measurement.setAxleWeight(simulated)
+
+    Evaluator.assert_requirements(truck, measurement)
