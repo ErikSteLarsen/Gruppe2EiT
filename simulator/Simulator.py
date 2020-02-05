@@ -1,4 +1,5 @@
-import Truck from "../Truck"
+from Grupp2EiT import Truck
+
 class Simulator:
 
     def __init__(self, Truck truck):
