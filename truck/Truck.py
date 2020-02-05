@@ -3,7 +3,7 @@ import numpy as np
 import json
 import requests
 
-from Trailer import Trailer
+from truck.Trailer import Trailer
 
 class Truck:
 
