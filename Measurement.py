@@ -4,8 +4,8 @@ class TruckMeasurement:
 
     def __init__(self, Truck):
         self.truck = Truck
-        self.measurements = []
-        self.totalWeight = None
+        self.measurements = [100]
+        self.totalWeight = 10000 #None
 
 
     def setAxleWeight(self, measurements):

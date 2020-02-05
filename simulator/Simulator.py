@@ -1,11 +1,9 @@
-from Grupp2EiT import Truck
-
 class Simulator:
 
-    def __init__(self, Truck truck):
+    def __init__(self,truck):
         self.truck = truck
 
-    def calculate_weights():
+    def calculate_weights(self):
         """
         this function will be changed and made more advanced later
         output is the weight on each axle

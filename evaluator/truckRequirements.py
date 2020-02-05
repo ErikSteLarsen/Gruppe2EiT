@@ -1,7 +1,6 @@
 
-
 from Measurement import TruckMeasurement
-import Requirement
+from evaluator.requirement import Requirement
 
 truckRequirements = []
 
@@ -16,9 +15,7 @@ def addTruckRequirement(requirementName, function, errorMessage="No error messag
     """
 def hasFrontAxleEnoughWeight(Truck, TruckMeasurement):
     axleWeights = TruckMeasurement.getMeasuredAxleWeights()
-    sum_weight = 0
-    for weight in axleWeights:
-        sum_weight += weight
+    sum_weight = TruckMeasurement.getTotalWeight() 
     if axleWeights[0]/sum_weight < 0.2:
         return False
     return True
@@ -44,8 +41,10 @@ def exceedWeightOnOneOfAxels(Truck, TruckMeasurement):
 
 
 
----------------------------
-The following code add the functions to a Truck Requirements Object
-"""
-addTruckRequirement("EnoughWeightOnFrontAxle", "Front axle does not have at least 20% of total weight", hasFrontAxleEnoughWeight)
-addTruckRequirement("Totalweight", "The total weight is exceeded!", )
+
+#The following code add the functions to a Truck Requirements Object
+
+def addAllTruckRequirements():
+    print("Adding truck requirements\n")
+    addTruckRequirement("EnoughWeightOnFrontAxle",hasFrontAxleEnoughWeight, "Front axle does not have 20% of total weight")
+
