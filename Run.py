@@ -14,4 +14,5 @@ if __name__ == '__main__':
     measurement = TruckMeasurement(truck)
     measurement.setAxleWeight([5000, 7544, 2344, 2343])
 
-    Evaluator.assert_requirements(truck, measurement)
+    results = Evaluator.assert_requirements(truck, measurement)
+    print("Results: %a" % results)
