@@ -1,4 +1,4 @@
-from Gruppe2EiT.truck import Truck
+from truck.Truck import Truck
 
 """
 This file include functions for checking that different requirements for the truck axle weights are met
@@ -16,7 +16,7 @@ class Requirement:
     def __init__(self, errorMessage, requirementName, function):
         self.function = function
         self.errorMessage = errorMessage
-	self.requirementName = requirementName
+        self.requirementName = requirementName
 
     def testRequirement(self, Truck, Measurement):
         """
@@ -28,9 +28,9 @@ class Requirement:
 
         """
         if (self.function(Truck, Measurement)):
-            return true
+            return True
         else:
-            print(self.ErrorMessage)
-            return false
+            print(self.errorMessage)
+            return False
 
    
