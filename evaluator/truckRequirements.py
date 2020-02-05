@@ -1,5 +1,3 @@
-
-
 from Measurement import TruckMeasurement
 from evaluator.requirement  import Requirement
 
@@ -10,7 +8,7 @@ def addTruckRequirement(requirementName, function, errorMessage="No error messag
 
 def hasFrontAxleEnoughWeight(Truck, TruckMeasurement):
     axleWeights = TruckMeasurement.getMeasuredAxleWeights()
-    sum_weight = TruckMeasurement.getTotalWeight() 
+    sum_weight = TruckMeasurement.getTotalWeight()
     if axleWeights[0]/sum_weight < 0.2:
         return False
     return True

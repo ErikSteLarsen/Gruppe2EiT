@@ -2,8 +2,7 @@
 
 class TruckMeasurement:
 
-    def __init__(self, Truck):
-        self.truck = Truck
+    def __init__(self):
         self.measurements = [100]
         self.totalWeight = 10000 #None
 
