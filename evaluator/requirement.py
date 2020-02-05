@@ -1,4 +1,4 @@
-from ../truck import Truck
+from Gruppe2EiT.truck import Truck
 """
 This file include functions for checking that different requirements for the truck axle weights are met
 
