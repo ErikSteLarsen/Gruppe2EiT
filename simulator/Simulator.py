@@ -3,9 +3,9 @@ class Simulator:
     def __init__(self,truck):
         self.truck = truck
 
-    def calculate_weights(self):
-        """
-        this function will be changed and made more advanced later
-        output is the weight on each axle
-        """
-        return [3000, 30000, 30000, 3000]
+    def calculateWeights(self):
+        numAxles=self.truck.getNumberOfAxles()
+        if self.truck.trailer is not None:
+            numAxles+=+self.truck.trailer.antallAksler
+        weights=[4000]*numAxles
+        return weights
