@@ -9,11 +9,16 @@ class Truck:
 
     # RegNR er en string
     def __init__(self, RegNR, trailerRegNR=None):
-
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
         data = r.json()
+        '''
+
+        data = None
+        with open('truck/DP51062.txt') as lastebil:
+            data = json.load(lastebil)  
+        '''
 
         #for key in data:
             #print(data[key])
@@ -34,7 +39,6 @@ class Truck:
         # Denne returnerer et array med en dictionary per aksel, gå inn via "self.aksler[nummer].avstandtilNesteAksel" feks
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
         if trailerRegNR is None:
-            print("None")
             self.trailer=None
         else:
             self.trailer = Trailer(trailerRegNR)
