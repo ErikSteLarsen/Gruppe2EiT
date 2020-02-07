@@ -6,9 +6,14 @@ import requests
 from truck.Trailer import Trailer
 
 class Truck:
+    """Konstruktør for Truck-klassen(Lastebil)
 
+    RegNR: Registreringsnummer for lastebil\t
+    trailerRegNR: Registreringsnummer for tilhenger, ikke nødvendig hvis det ikke er henger
+    """
     # RegNR er en string
     def __init__(self, RegNR, trailerRegNR=None):
+        
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
@@ -63,13 +68,19 @@ class Truck:
         return akselInfo
 
     def getNumberOfAxles(self):
+        '''Funksjon som returnerer antall aksel på lastebilen
+        '''
         return self.antallAksler
 
 
     def getMaxTotalWeight(self):
+        '''Funskjon som returnerer maks totalvekt(Bare lastebil)
+        '''
         return self.tillattTotalvekt
 
     def getTillattVogntogVekt(self):
+        '''Funskjon som returnerer maks vogntogvekt(lastebil+henger)
+        '''
         return self.tillattVogntogvekt
 
 

@@ -24,7 +24,7 @@ addTruckRequirement("EnoughWeightOnFrontAxle", hasFrontAxleEnoughWeight, "Front 
 
 def exceedsTotalWeight(Truck, TruckMeasurement):
     totalWeight = TruckMeasurement.getTotalWeight()
-    allowedWeight = Truck.getMaxTotalWeight()
+    allowedWeight = Truck.getMaxAxelWeights()
     if totalWeight > allowedWeight:
         return False
     return True
