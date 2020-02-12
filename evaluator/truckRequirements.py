@@ -1,5 +1,6 @@
 from Measurement import TruckMeasurement
 from .requirement import Requirement
+from truck import Truck
 
 truckRequirements = []
 

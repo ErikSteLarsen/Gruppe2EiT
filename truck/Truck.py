@@ -6,9 +6,17 @@ import requests
 from truck.Trailer import Trailer
 
 class Truck:
+    """Konstruktør for Truck-klassen(Lastebil)
 
+    Args: 
+    RegNR: Registreringsnummer for lastebil\t
+    trailerRegNR: Registreringsnummer for tilhenger, ikke nødvendig hvis det ikke er henger
+
+    Funskjoner: getMaxAxelWeights(), getNumberOfAxles(), getMaxTotalWeight(), getTillattVogntogVekt()
+    """
     # RegNR er en string
     def __init__(self, RegNR, trailerRegNR=None):
+        
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
@@ -45,6 +53,10 @@ class Truck:
 
 
     def getMaxAxleWeights(self):
+        '''Funksjon som gir informasjon maks aksellast for hver aksel
+
+        Returns: Array med maks akselvekt for hver aksel
+        '''
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):
@@ -63,13 +75,19 @@ class Truck:
         return akselInfo
 
     def getNumberOfAxles(self):
+        '''Funksjon som returnerer antall aksel på lastebilen
+        '''
         return self.antallAksler
 
 
     def getMaxTotalWeight(self):
+        '''Funskjon som returnerer maks totalvekt(Bare lastebil)
+        '''
         return self.tillattTotalvekt
 
     def getTillattVogntogVekt(self):
+        '''Funskjon som returnerer maks vogntogvekt(lastebil+henger)
+        '''
         return self.tillattVogntogvekt
 
 
