@@ -3,9 +3,15 @@ import json
 import requests
 
 class Trailer:
+    """Konstruktør for Trailer-klassen
+    
+    Args: RegNR: Registreringsnummer for hengeren
 
+    Funskjoner: getWeightDistribution()
+    """
     # RegNR er en string
     def __init__(self, RegNR):
+        
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
@@ -36,6 +42,12 @@ class Trailer:
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
 
     def getWeightDistribution(self):
+        """Get weight distribution
+
+        Ingen argumenter
+
+        Returns: Informasjon om maks last for hver aksel som en liste
+        """
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):
