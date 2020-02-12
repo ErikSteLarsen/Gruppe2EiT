@@ -1,6 +1,7 @@
 
 
 class TruckMeasurement:
+
     '''En konstruktør for å lage et måling av en lastebil
 
     Args: Har ingen argumenter(Bør endres)
@@ -17,11 +18,13 @@ class TruckMeasurement:
 
         Args: Measurements: Liste med målinger, lengde lik antall aksler på Truck
         '''
+        
         totalWeight = 0
         for weight in measurements:
             totalWeight += weight
         self.totalWeight = totalWeight
         self.measurements = measurements
+
 
     def getTotalWeight(self):
         '''Funksjon for å hente totalvekt på en måling

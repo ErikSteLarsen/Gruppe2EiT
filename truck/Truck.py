@@ -61,8 +61,6 @@ class Truck:
         else:
             self.trailer = Trailer(trailerRegNR)
 
-
-
         self.akselInfo = []
 
         avstandTilNesteAksel = 0
@@ -71,6 +69,7 @@ class Truck:
             self.akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
             avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
 
+
         if self.akselInfo[0][1] == None and len(self.akselInfo) == 3:
             self.akselInfo[0][1] = self.tillattTotalvekt - (self.akselInfo[1][1] + self.akselInfo[2][1])
         
@@ -78,6 +77,7 @@ class Truck:
         Find wheel boogies of 
         """
         self.boogies = Boogies(self.akselInfo)
+
         #for num in range(len(akselInfo)):
             #print("Avstand mellom aksel:", num+1, "og", num+2, "=", akselInfo[num][0])
 
@@ -98,6 +98,8 @@ class Truck:
         """
         return self.antallAksler
 
+    def getNumberOfAxles(self):
+        return self.antallAksler
 
     def getMaxTruckTotalWeight(self):
         """
@@ -106,6 +108,8 @@ class Truck:
         """
         return self.tillattTotalvekt
 
+    def getMaxTotalWeight(self):
+        return self.tillattTotalvekt
 
     def getMaxTruckAndTrailerTotalWeight(self):
         """
