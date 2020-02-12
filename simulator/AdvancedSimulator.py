@@ -6,7 +6,7 @@ class AdvancedSimulator:
     def __init__(self,truck):
         self.truck = truck
 
-    def calculateWeights(self):
+    def calculateWeights(self,valgfri=None):
 
         weights = []
         axleCapacitiesTruck = self.truck.getMaxAxleWeights()

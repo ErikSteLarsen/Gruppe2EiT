@@ -1,49 +1,57 @@
 from Measurement import TruckMeasurement
 from .requirement import Requirement
-from truck import Truck
+from truck.Truck import Truck
 
 truckRequirements = []
 
 def addTruckRequirement(requirementName, function, errorMessage="No error message added"):
     truckRequirements.append(Requirement(errorMessage, requirementName, function))
 
-
-
-"""
+    
+def hasFrontAxleEnoughWeight(truck: Truck,measurement: TruckMeasurement):
+    """
     This function will check if the front axle has at least 20% of the total weight
 
     Return: true if test pass, false if test fail
     """
-def hasFrontAxleEnoughWeight(Truck, TruckMeasurement):
-    axleWeights = TruckMeasurement.getMeasuredAxleWeights()
-    sum_weight = TruckMeasurement.getTotalWeight()
+    axleWeights = measurement.getMeasuredAxleWeights()
+    sum_weight = measurement.getTotalWeight()
     if axleWeights[0]/sum_weight < 0.2:
         return False
     return True
 addTruckRequirement("EnoughWeightOnFrontAxle", hasFrontAxleEnoughWeight, "Front axle does not have 20% of total weight")
 
 
-def exceedsTotalWeight(Truck, TruckMeasurement):
-    totalWeight = TruckMeasurement.getTotalWeight()
-    # totalWeight er vekten for hele vogntoget, mens allowedWeight er vekten for bare truck
-    # TODO Dettte må endres
-    allowedWeight = Truck.getMaxTruckTotalWeight()
+def exceedsTruckTotalWeight(truck: Truck,measurement: TruckMeasurement):
+    totalWeight = measurement.getTotalWeight()
+    allowedWeight = truck.getMaxTruckAndTrailerTotalWeight()
     if totalWeight > allowedWeight:
         return False
     return True
-addTruckRequirement("TotalWeightNotExceeded", exceedsTotalWeight, "Weight exceeds allowed total weight")
+addTruckRequirement("TotalWeightNotExceeded", exceedsTruckTotalWeight, "Weight exceeds allowed truck total weight")
 
-def exceedWeightOnOneOfAxles(Truck, TruckMeasurement):
-    axles = Truck.getMaxAxleWeights()
+def exceedAxleTruckWeight(truck: Truck,measurement: TruckMeasurement):
+    axles = truck.getMaxAxleWeights()
     axleWeights = []
     for element in axles:
         axleWeights.append(element[1])
-    measuredWeights = TruckMeasurement.getMeasuredAxleWeights()
+    measuredWeights = measurement.getMeasuredAxleWeights()
     for i in range(len(axleWeights)):
         if axleWeights[i] < measuredWeights[i]:
             return False
     return True
-addTruckRequirement("SingleAxleWeightNotExceeded", exceedWeightOnOneOfAxles, "An axle exceeds allowed weight")
+addTruckRequirement("SingleAxleWeightNotExceeded", exceedAxleTruckWeight, "An axle on the truck exceeds allowed weight")
+
+def exceedsAxleTrailerWeight(truck: Truck,measurement: TruckMeasurement):
+    axles=truck.trailer.getWeightDistribution()
+    measuredWeights = measurement.getMeasuredAxleWeights()[::-1]
+    axleWeights = [x[1] for x in axles][::-1]
+    for i in range(len(axleWeights)):
+        if axleWeights[i] < measuredWeights[i]:
+            return False
+    return True
+addTruckRequirement("TrailerWeightNotExceeded", exceedsAxleTrailerWeight, "An axle on the trailer exceeds allowed weight")
+
 
 
 
