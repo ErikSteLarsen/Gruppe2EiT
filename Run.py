@@ -9,7 +9,7 @@ henger = "NP5841"
 
 if __name__ == '__main__':
     truck = Truck(lastebil, henger)
-    print(truck.getMaxAxelWeights())
+    print(truck.getMaxAxleWeights())
     print(truck.trailer.getWeightDistribution())
 
     measurement=TruckMeasurement()
