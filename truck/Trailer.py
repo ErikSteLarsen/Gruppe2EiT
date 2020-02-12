@@ -1,16 +1,26 @@
 import numpy as np
-
+import json
 import requests
 
 class Trailer:
+    """Konstruktør for Trailer-klassen
+    
+    Args: RegNR: Registreringsnummer for hengeren
 
+    Funskjoner: getWeightDistribution()
+    """
     # RegNR er en string
     def __init__(self, RegNR):
-
+        
+        '''
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
         data = r.json()
+        '''
+        data = None
+        with open('truck/NP5841.txt') as lastebil:
+            data = json.load(lastebil) 
 
         #for key in data:
             #print(data[key])
@@ -32,10 +42,16 @@ class Trailer:
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
 
     def getWeightDistribution(self):
+        """Get weight distribution
+
+        Ingen argumenter
+
+        Returns: Informasjon om maks last for hver aksel som en liste
+        """
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):
-            akselInfo.append((avstandTilNesteAksel, self.aksler[aksel]['tillattLast']))
+            akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
             avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
 
         #for num in range(len(akselInfo)):
