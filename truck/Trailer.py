@@ -12,6 +12,7 @@ class Trailer:
     # RegNR er en string
     def __init__(self, RegNR):
         
+        '''
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
@@ -20,7 +21,6 @@ class Trailer:
         data = None
         with open('truck/NP5841.txt') as lastebil:
             data = json.load(lastebil) 
-        '''
 
         #for key in data:
             #print(data[key])

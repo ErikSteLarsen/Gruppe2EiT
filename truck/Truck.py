@@ -27,6 +27,7 @@ class Truck:
         Input: Norwegian license plate numbers
         Return: Truck object with vales from NPRA
         """
+        '''
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
@@ -36,7 +37,6 @@ class Truck:
         data = None
         with open('truck/DP51062.txt') as lastebil:
             data = json.load(lastebil)  
-        '''
 
         #for key in data:
             #print(data[key])
@@ -84,11 +84,13 @@ class Truck:
         #for num in range(len(akselInfo)):
             #print("Tillatt last på aksel:", num+1,"=", akselInfo[num][1])
 
+
     def getMaxAxleWeights(self):
         """
         Return maximum allowed axle weights for the truck as an array. Index 0 is first axle in front of veichle
         """
         return self.akselInfo
+
 
     def getNumberOfAxles(self):
         """
@@ -103,6 +105,7 @@ class Truck:
         Remark: not including trailer
         """
         return self.tillattTotalvekt
+
 
     def getMaxTruckAndTrailerTotalWeight(self):
         """
