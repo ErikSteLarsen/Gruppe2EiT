@@ -1,3 +1,8 @@
+"""
+This file include the Truck object and its functions for extracting information from NPRA (Norwegian Public Road Administration). Its constructor require a Truck license plate number and might also use a trailer license plate.
+"""
+
+
 import numpy as np
 
 import json
@@ -9,7 +14,11 @@ class Truck:
 
     # RegNR er en string
     def __init__(self, RegNR, trailerRegNR=None):
-
+        """
+        Initialization of Truck object. 
+        Input: Norwegian license plate numbers
+        Return: Truck object with vales from NPRA
+        """
         baseLink = 'https://www.vegvesen.no/ws/no/vegvesen/kjoretoy/kjoretoyoppslag/v1/kjennemerkeoppslag/kjoretoy/'
         URL = baseLink + RegNR
         r = requests.get(url = URL)
@@ -40,15 +49,19 @@ class Truck:
             self.trailer = Trailer(trailerRegNR)
 
 
-    def getMaxAxelWeights(self):
-        akselInfo = []
+        self.akselInfo = []
         avstandTilNesteAksel = 0
+
         for aksel in range(self.antallAksler):
-            akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
+            self.akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
             avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
 
-        if akselInfo[0][1] == None and len(akselInfo) == 3:
-            akselInfo[0][1] = self.tillattTotalvekt - (akselInfo[1][1] + akselInfo[2][1])
+        if self.akselInfo[0][1] == None and len(self.akselInfo) == 3:
+            self.akselInfo[0][1] = self.tillattTotalvekt - (self.akselInfo[1][1] + self.akselInfo[2][1])
+        
+        """
+        Find wheel boogies of 
+        """
 
         #for num in range(len(akselInfo)):
             #print("Avstand mellom aksel:", num+1, "og", num+2, "=", akselInfo[num][0])
@@ -56,16 +69,30 @@ class Truck:
         #for num in range(len(akselInfo)):
             #print("Tillatt last på aksel:", num+1,"=", akselInfo[num][1])
 
-        return akselInfo
+    def getMaxAxelWeights(self):
+        """
+        Return maximum allowed axle weights for the truck as an array. Index 0 is first axle in front of veichle
+        """
+        return self.akselInfo
 
     def getNumberOfAxles(self):
+        """
+        Return the trucks number of axles
+        """
         return self.antallAksler
 
 
-    def getMaxTotalWeight(self):
+    def getMaxTruckTotalWeight(self):
+        """
+        Return max total weight of truck. 
+        Remark: not including trailer
+        """
         return self.tillattTotalvekt
 
-    def getTillattVogntogVekt(self):
+    def getMaxTruckAndTrailerTotalWeight(self):
+        """
+        Return max total weight of truck and trailer based on trucks info
+        """
         return self.tillattVogntogvekt
 
 
