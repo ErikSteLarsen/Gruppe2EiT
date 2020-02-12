@@ -2,7 +2,7 @@
 from truck.Truck import Truck
 from Measurement import TruckMeasurement
 from evaluator.evaluator import Evaluator
-from simulator.Simulator import Simulator
+from simulator.AdvancedSimulator import AdvancedSimulator
 
 lastebil = "DP51062"
 henger = "NP5841"
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     print(truck.trailer.getWeightDistribution())
 
     measurement=TruckMeasurement()
-    simulator=Simulator(truck)
+    simulator=AdvancedSimulator(truck)
     simulated=simulator.calculateWeights()
     simulated[0]=5500
     measurement.setAxleWeight(simulated)
