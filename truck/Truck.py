@@ -44,7 +44,7 @@ class Truck:
             self.trailer = Trailer(trailerRegNR)
 
 
-    def getMaxAxelWeights(self):
+    def getMaxAxleWeights(self):
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):
