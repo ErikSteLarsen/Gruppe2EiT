@@ -31,17 +31,17 @@ def exceedsTotalWeight(Truck, TruckMeasurement):
     return True
 addTruckRequirement("TotalWeightNotExceeded", exceedsTotalWeight, "Weight exceeds allowed total weight")
 
-def exceedWeightOnOneOfAxels(Truck, TruckMeasurement):
-    axels = Truck.getMaxAxelWeights()
-    axelWeights = []
-    for element in axels:
-        axelWeights.append(element[1])
+def exceedWeightOnOneOfAxles(Truck, TruckMeasurement):
+    axles = Truck.getMaxAxleWeights()
+    axleWeights = []
+    for element in axles:
+        axleWeights.append(element[1])
     measuredWeights = TruckMeasurement.getMeasuredAxleWeights()
-    for i in range(len(axelWeights)):
-        if axelWeights[i] < measuredWeights[i]:
+    for i in range(len(axleWeights)):
+        if axleWeights[i] < measuredWeights[i]:
             return False
     return True
-addTruckRequirement("SingleAxleWeightNotExceeded", exceedWeightOnOneOfAxels, "An axle exceeds allowed weight")
+addTruckRequirement("SingleAxleWeightNotExceeded", exceedWeightOnOneOfAxles, "An axle exceeds allowed weight")
 
 
 

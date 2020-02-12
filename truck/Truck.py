@@ -52,7 +52,7 @@ class Truck:
             self.trailer = Trailer(trailerRegNR)
 
 
-    def getMaxAxelWeights(self):
+    def getMaxAxleWeights(self):
         '''Funksjon som gir informasjon maks aksellast for hver aksel
 
         Returns: Array med maks akselvekt for hver aksel
