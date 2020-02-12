@@ -1,12 +1,10 @@
 from evaluator.truckRequirements import truckRequirements
 
-class Evaluator:
-
-    def assert_requirements(truck, measurement):
-        """
-        Run all tests and return the result
-        """
-        results = []
-        for req in truckRequirements:
-            results.append(req.testRequirement(truck, measurement))
-        return results
+def assert_requirements(truck, measurement):
+    """
+    Run all tests and return the result
+    """
+    results = []
+    for req in truckRequirements:
+        results.append(req.testRequirement(truck, measurement))
+    return results

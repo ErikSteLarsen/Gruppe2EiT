@@ -17,7 +17,7 @@ class Truck:
     RegNR: Registreringsnummer for lastebil\t
     trailerRegNR: Registreringsnummer for tilhenger, ikke nødvendig hvis det ikke er henger
 
-    Funskjoner: getMaxAxelWeights(), getNumberOfAxles(), getMaxTotalWeight(), getTillattVogntogVekt()
+    Funskjoner: getMaxAxelWeights(), getNumberOfAxles(), getMaxTruckTotalWeight(), getTillattVogntogVekt()
     """
     # RegNR er en string
     def __init__(self, RegNR, trailerRegNR=None):
