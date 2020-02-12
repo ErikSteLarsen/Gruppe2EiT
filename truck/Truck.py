@@ -11,9 +11,17 @@ import requests
 from truck.Trailer import Trailer
 
 class Truck:
+    """Konstruktør for Truck-klassen(Lastebil)
 
+    Args: 
+    RegNR: Registreringsnummer for lastebil\t
+    trailerRegNR: Registreringsnummer for tilhenger, ikke nødvendig hvis det ikke er henger
+
+    Funskjoner: getMaxAxelWeights(), getNumberOfAxles(), getMaxTotalWeight(), getTillattVogntogVekt()
+    """
     # RegNR er en string
     def __init__(self, RegNR, trailerRegNR=None):
+
         """
         Initialization of Truck object. 
         Input: Norwegian license plate numbers
@@ -23,6 +31,12 @@ class Truck:
         URL = baseLink + RegNR
         r = requests.get(url = URL)
         data = r.json()
+        '''
+
+        data = None
+        with open('truck/DP51062.txt') as lastebil:
+            data = json.load(lastebil)  
+        '''
 
         #for key in data:
             #print(data[key])
@@ -43,13 +57,14 @@ class Truck:
         # Denne returnerer et array med en dictionary per aksel, gå inn via "self.aksler[nummer].avstandtilNesteAksel" feks
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
         if trailerRegNR is None:
-            print("None")
             self.trailer=None
         else:
             self.trailer = Trailer(trailerRegNR)
 
 
+
         self.akselInfo = []
+
         avstandTilNesteAksel = 0
 
         for aksel in range(self.antallAksler):
@@ -69,7 +84,7 @@ class Truck:
         #for num in range(len(akselInfo)):
             #print("Tillatt last på aksel:", num+1,"=", akselInfo[num][1])
 
-    def getMaxAxelWeights(self):
+    def getMaxAxleWeights(self):
         """
         Return maximum allowed axle weights for the truck as an array. Index 0 is first axle in front of veichle
         """
@@ -93,6 +108,7 @@ class Truck:
         """
         Return max total weight of truck and trailer based on trucks info
         """
+
         return self.tillattVogntogvekt
 
 
