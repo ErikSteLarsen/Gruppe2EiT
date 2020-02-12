@@ -8,8 +8,11 @@ from truck.Trailer import Trailer
 class Truck:
     """Konstruktør for Truck-klassen(Lastebil)
 
+    Args: 
     RegNR: Registreringsnummer for lastebil\t
     trailerRegNR: Registreringsnummer for tilhenger, ikke nødvendig hvis det ikke er henger
+
+    Funskjoner: getMaxAxelWeights(), getNumberOfAxles(), getMaxTotalWeight(), getTillattVogntogVekt()
     """
     # RegNR er en string
     def __init__(self, RegNR, trailerRegNR=None):
@@ -50,6 +53,10 @@ class Truck:
 
 
     def getMaxAxelWeights(self):
+        '''Funksjon som gir informasjon maks aksellast for hver aksel
+
+        Returns: Array med maks akselvekt for hver aksel
+        '''
         akselInfo = []
         avstandTilNesteAksel = 0
         for aksel in range(self.antallAksler):

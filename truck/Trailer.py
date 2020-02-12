@@ -6,6 +6,8 @@ class Trailer:
     """Konstruktør for Trailer-klassen
     
     Args: RegNR: Registreringsnummer for hengeren
+
+    Funskjoner: getWeightDistribution()
     """
     # RegNR er en string
     def __init__(self, RegNR):
@@ -44,9 +46,7 @@ class Trailer:
 
         Ingen argumenter
 
-        Returns:
-        Informasjon om maks last for hver aksel
-
+        Returns: Informasjon om maks last for hver aksel som en liste
         """
         akselInfo = []
         avstandTilNesteAksel = 0

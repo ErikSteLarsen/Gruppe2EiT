@@ -1,5 +1,6 @@
 from Measurement import TruckMeasurement
 from .requirement import Requirement
+from truck import Truck
 
 truckRequirements = []
 
@@ -24,7 +25,7 @@ addTruckRequirement("EnoughWeightOnFrontAxle", hasFrontAxleEnoughWeight, "Front 
 
 def exceedsTotalWeight(Truck, TruckMeasurement):
     totalWeight = TruckMeasurement.getTotalWeight()
-    allowedWeight = Truck.getMaxAxelWeights()
+    allowedWeight = Truck.getMaxTotalWeight()
     if totalWeight > allowedWeight:
         return False
     return True
