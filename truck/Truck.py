@@ -9,7 +9,7 @@ import json
 import requests
 
 from truck.Trailer import Trailer
-
+from truck.Boogie import Boogies
 class Truck:
     """Konstruktør for Truck-klassen(Lastebil)
 
@@ -77,7 +77,7 @@ class Truck:
         """
         Find wheel boogies of 
         """
-
+        self.boogies = Boogies(self.akselInfo)
         #for num in range(len(akselInfo)):
             #print("Avstand mellom aksel:", num+1, "og", num+2, "=", akselInfo[num][0])
 
@@ -114,4 +114,9 @@ class Truck:
 
         return self.tillattVogntogvekt
 
+    def getBoogies(self):
+        """
+        Return all axles grouped in boogie objects after boogie type
+        """
+        return self.boogies
 
