@@ -22,13 +22,14 @@ class Boogies:
     
     Wheelset can be extracted with getBoogies()
     """
+
     def __init__(self, axles):
         self.boogies = [] #List of Boogie objects
         for i in range(1, len(axles)):
             if(axles[i][0] < 1800):
                 if(i >= len(axles)-1): #if last axle
                     self.boogies.append(Boogie([i-1, i], axles[i][0]))
-                elif(axles[i+1][0] < 1800):
+                elif(axle[i+1][0] < 1800):
                     self.boogies.append(Boogie([i-1, i, i+1], min(axles[i-1][0], axles[i][0])))
                     i = i+2
                 else:
