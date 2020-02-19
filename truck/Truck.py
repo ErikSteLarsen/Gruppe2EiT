@@ -74,7 +74,7 @@ class Truck:
             self.akselInfo[0][1] = self.tillattTotalvekt - (self.akselInfo[1][1] + self.akselInfo[2][1])
         
         """
-        Find wheel boogies of 
+        Find wheel boogies of Truck 
         """
         self.boogies = Boogies(self.akselInfo)
 

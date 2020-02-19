@@ -16,6 +16,12 @@ class Boogie:
         self.driveShaft = driveShaft
 
 class Boogies:
+    """
+    Creates an array of all wheelsets on a Truck or Trailer object
+    INIT: list of Axles with maxWeight and distance to next axle
+    
+    Wheelset can be extracted with getBoogies()
+    """
 
     def __init__(self, axles):
         self.boogies = [] #List of Boogie objects

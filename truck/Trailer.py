@@ -2,6 +2,7 @@ import numpy as np
 import json
 import requests
 
+from truck.Boogie import Boogies
 class Trailer:
     """Konstruktør for Trailer-klassen
     
@@ -40,6 +41,16 @@ class Trailer:
 
         # Denne returnerer et array med en dictionary per aksel, gå inn via "self.aksler[nummer].avstandtilNesteAksel" feks
         self.aksler = data['tekniskKjoretoy']['aksler']['aksler']
+        self.akselInfo = []
+        avstandTilNesteAksel = 0
+        for aksel in range(self.antallAksler):
+            self.akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
+            avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
+
+        
+        #Find Wheel boogies of Trailer
+        self.boogies = Boogies(self.akselInfo)
+
 
     def getWeightDistribution(self):
         """Get weight distribution
@@ -48,12 +59,7 @@ class Trailer:
 
         Returns: Informasjon om maks last for hver aksel som en liste
         """
-        akselInfo = []
-        avstandTilNesteAksel = 0
-        for aksel in range(self.antallAksler):
-            akselInfo.append([avstandTilNesteAksel, self.aksler[aksel]['tillattLast']])
-            avstandTilNesteAksel = self.aksler[aksel]['avstandtilNesteAksel']
-
+        return self.akselInfo
         #for num in range(len(akselInfo)):
             #print("Avstand mellom aksel:", num+1, "og", num+2, "=", akselInfo[num][0])
 
@@ -61,6 +67,10 @@ class Trailer:
             #print("Tillatt last på aksel:", num+1,"=", akselInfo[num][1])
 
         return akselInfo
-
+    def getBoogies(self):
+        """
+        Return all axles grouped in boogie objects after boogie type
+        """
+        return self.boogies
 
 
