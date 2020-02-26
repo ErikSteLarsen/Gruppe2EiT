@@ -14,8 +14,8 @@ def hasFrontAxleEnoughWeight(truck: Truck,measurement: TruckMeasurement):
     """
     This function checks if the front axle has at least 20% of the total weight.
 
-    :param truck:
-    :param measurement:
+    :param truck:\n
+    :param measurement:\n
     :return: true if more than 20% of the totalweight is on the front axle, false if not
     """
     axleWeights = measurement.getMeasuredAxleWeights()
@@ -30,8 +30,8 @@ def exceedsTruckTotalWeight(truck: Truck,measurement: TruckMeasurement):
     """
     This function checks whether or not the measured total weight exceeds the maximum allowed weight.
 
-    :param truck:
-    :param measurement:
+    :param truck:\n
+    :param measurement:\n
     :return: true if measured total weight is less than allowed, false if more than allowed.
     """
     totalWeight = measurement.getTotalWeight()
@@ -46,8 +46,8 @@ def exceedAxleTruckWeight(truck: Truck,measurement: TruckMeasurement):
     """
     This function checks if AT LEAST ONE of the axles on the TRUCK exceeds their maximum allowed weight.
 
-    :param truck:
-    :param measurement:
+    :param truck:\n
+    :param measurement:\n
     :return: true if none of the axles on TRUCK has more weight than allowed, false if one of them does.
     """
     axles = truck.getMaxAxleWeights()
@@ -66,8 +66,8 @@ def exceedsAxleTrailerWeight(truck: Truck,measurement: TruckMeasurement):
     """
     This function checks if AT LEAST ONE of the axles on the TRAILER exceeds their maximum allowed weight.
 
-    :param truck: used to access the trucks connected TRAILER object.
-    :param measurement:
+    :param truck: used to access the trucks connected TRAILER object.\n
+    :param measurement:\n
     :return: true if none of the axles on the TRAILER has exceeds weight, false if one does.
     """
     axles=truck.trailer.getWeightDistribution()
@@ -81,11 +81,11 @@ addTruckRequirement("TrailerWeightNotExceeded", exceedsAxleTrailerWeight, "An ax
 
 
 def getRoadStandardIndex(boogie: Boogie):
-     """
+    """
     This function find the index in the roadStandard array for the current boogieWheels.
 
-    :param truck:
-    :param measurement:
+    :param truck:\n
+    :param measurement:\n
     :return: int as index in boogieWheels
     """
     
@@ -117,8 +117,8 @@ def followRoadRegulations(truck: Truck,measurement: TruckMeasurement):
     """
     Checks if Axle boogie weights are within road regulations for specified road.
     """
-   # print("Velg veistandard:\n\t1) Bk6\n\t2) Bk8 \n\t3) BkT8 \n\t4) BK10")
-   # roadType = input()
+    # print("Velg veistandard:\n\t1) Bk6\n\t2) Bk8 \n\t3) BkT8 \n\t4) BK10")
+    # roadType = input()
     roadStandards = []
     roadStandards.append([10000, 11500, 18000, 16000, 15000, 10000, 24000, 22000, 16000])#Bk10
     roadStandards.append([8000, 8000, 14000, 12000, 11500, 8000, 19000, 18000, 12000])#BkT8
@@ -129,10 +129,10 @@ def followRoadRegulations(truck: Truck,measurement: TruckMeasurement):
     axleWeights = measurement.getMeasuredAxleWeights()
     boogieWeights = []
     for boogie in truck.boogies.getBoogies():
-       sum = 0
-       for axle in boogie.boogieWheels:
-           sum += measurement.getMeasuredAxleWeights()[axle]
-       boogieWeights.append(sum)
+        sum = 0
+        for axle in boogie.boogieWheels:
+            sum += measurement.getMeasuredAxleWeights()[axle]
+        boogieWeights.append(sum)
 
     for r in range(len(roadStandards)):
         for i in range(len(boogieWeights)):
