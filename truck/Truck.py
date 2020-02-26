@@ -98,9 +98,6 @@ class Truck:
         """
         return self.antallAksler
 
-    def getNumberOfAxles(self):
-        return self.antallAksler
-
     def getMaxTruckTotalWeight(self):
         """
         Return max total weight of truck. 
