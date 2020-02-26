@@ -122,10 +122,10 @@ def followRoadRegulations(truck: Truck,measurement: TruckMeasurement):
     axleWeights = measurement.getMeasuredAxleWeights()
     boogieWeights = []
     for boogie in truck.boogies.getBoogies():
-       sum = 0
-       for axle in boogie.boogieWheels:
-           sum += measurement.getMeasuredAxleWeights()[axle]
-       boogieWeights.append(sum)
+        sum = 0
+        for axle in boogie.boogieWheels:
+        sum += measurement.getMeasuredAxleWeights()[axle]
+        boogieWeights.append(sum)
 
     for r in range(len(roadStandards)):
         for i in range(len(boogieWeights)):
