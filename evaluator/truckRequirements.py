@@ -81,6 +81,13 @@ addTruckRequirement("TrailerWeightNotExceeded", exceedsAxleTrailerWeight, "An ax
 
 
 def getRoadStandardIndex(boogie: Boogie):
+     """
+    This function find the index in the roadStandard array for the current boogieWheels.
+
+    :param truck:
+    :param measurement:
+    :return: int as index in boogieWheels
+    """
     
     if (len(boogie.boogieWheels) == 1):
         if(boogie.driveShaft == True):
