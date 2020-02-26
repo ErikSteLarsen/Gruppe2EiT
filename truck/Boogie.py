@@ -29,7 +29,7 @@ class Boogies:
             if(axles[i][0] < 1800):
                 if(i >= len(axles)-1): #if last axle
                     self.boogies.append(Boogie([i-1, i], axles[i][0]))
-                elif(axle[i+1][0] < 1800):
+                elif(axles[i+1][0] < 1800):
                     self.boogies.append(Boogie([i-1, i, i+1], min(axles[i-1][0], axles[i][0])))
                     i = i+2
                 else:
