@@ -25,6 +25,7 @@ def read_adc(adc_ch, vref = 5):
     #  Third bit (ODD/SIGN): Select channel
     #  Fourth bit (MSFB): 0 for LSB first
     #  Next 12 bits: 0 (don't care)
+
     msg = 0b10000000 | ( ((adc_ch & 7) << 4))
     msg = [0b00000001, msg, 0b00000000]
     reply = spi.xfer2(msg)
