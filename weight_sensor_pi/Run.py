@@ -25,7 +25,7 @@ def read_adc(adc_ch, vref = 5):
     #  Third bit (ODD/SIGN): Select channel
     #  Fourth bit (MSFB): 0 for LSB first
     #  Next 12 bits: 0 (don't care)
-    msg = 0b1000000 | ( ((spi_ch & 7) << 4))
+    msg = 0b10000000 | ( ((adc_ch & 7) << 4))
     msg = [0b00000001, msg, 0b00000000]
     reply = spi.xfer2(msg)
 
@@ -50,7 +50,11 @@ def read_adc(adc_ch, vref = 5):
 # Report the channel 0 and channel 1 voltages to the terminal
 try:
     while True:
+        before = time.time()
         adc_0 = read_adc(0)
+        after = time.time()
+        total_time = after - before
+        print("time: %.20f\n" % total_time)
         print("Ch 0:", round(adc_0, 2), "V")
         time.sleep(1)
 
