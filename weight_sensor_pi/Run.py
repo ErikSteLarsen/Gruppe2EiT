@@ -1,6 +1,9 @@
 import time
 import spidev
 
+import numpy as np
+import matplotlib.pyplot as plt
+
 spi_ch = 0
 
 """
@@ -48,16 +51,33 @@ def read_adc(adc_ch, vref = 5):
 
     return voltage
 
-# Report the channel 0 and channel 1 voltages to the terminal
+# Measure voltages and plot them after KeyboardInterrupt (Ctrl+C)
+print('Measuring started, press Ctrl+C to end')
 try:
+    start_time = time.time()
+    values = np.array([])
+    timestamps = np.array([])
     while True:
-        before = time.time()
         adc_0 = read_adc(0)
-        after = time.time()
-        total_time = after - before
-        print("time: %.20f\n" % total_time)
-        print("Ch 0:", round(adc_0, 2), "V")
-        time.sleep(1)
-
+        timestamps = np.append(timestamps, time.time() - start_time)
+        values = np.append(values, adc_0)
+except KeyboardInterrupt:
+    if timestamps.shape != values.shape:
+        """
+        KeyboardInterrupt might occur between the appends causing timestamps
+        and values to have different lengths. Naively delete last item in
+        timestamps if that's the case (as the timestamps array is always
+        appended to first)
+        """
+        timestamps = np.delete(timestamps, -1)
 finally:
-    GPIO.cleanup()
+    measuredtime = timestamps[-1] - timestamps[0]
+    samples = len(timestamps)
+    print() # newline
+    print('%i samples in %f seconds(?) for an average sample rate of %f' %
+            (samples, measuredtime, samples/measuredtime) )
+    print('Displaying plot...')
+
+    # Plot measurements
+    plt.plot(timestamps, values)
+    plt.show()
