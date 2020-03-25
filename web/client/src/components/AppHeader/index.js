@@ -5,7 +5,7 @@ const AppHeader = () => {
   return (
     <header className="AppHeader">
       <p>
-        Gruppe2 EiT
+        Weight Monitoring System (?)
       </p>
     </header>
   );

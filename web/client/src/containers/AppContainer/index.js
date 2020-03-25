@@ -6,6 +6,7 @@ import WeightMonitorContainer from '../WeightMonitorContainer';
 import AppHeader from '../../components/AppHeader';
 
 const AppContainer = () => {
+  
   return (
     <div className="AppContainer">
       <AppHeader />

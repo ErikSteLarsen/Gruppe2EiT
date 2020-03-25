@@ -1,12 +1,14 @@
 import React from 'react';
 import './styles.css'
+import { } from '@material-ui/core';
+import RegistrationPlate from '../RegistrationPlate';
+import FeedbackContainer from '../FeedbackContainer';
 
 const WeightMonitorContainer = () => {
   return (
     <div className="WeightMonitorContainer">
-      <p>
-        This is where the weight monitor components will appear
-      </p>
+        <RegistrationPlate />
+        <FeedbackContainer />
     </div>
   )
 }
