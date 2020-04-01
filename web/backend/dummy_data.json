@@ -1,25 +1,37 @@
 {
-  "measurement_result": {
+  "truck_details": {
     "truck_regnr": "KJ52228",
-    "trailer_regnr": "EL54224",
+    "trailer_regnr": "EL54224"
+  },
+  "measurement_result": {
     "axle_weights": [1204, 5343, 5425, 4334, 4453, 4425],
-    "axle_distances": [0, 5565, 1204, 23053, 1495, 1495],
-    "requirement_tests": [
-      {
-        "20_percent_on_steering_wheels": {
-          "pass": false,
-          "reason": "Steering wheels must have at least 20% of total weight"
-        },
-        "some_other_test": {
-          "pass": true
-        },
-        "complicated_test": {
-          "pass": true,
-          "restrictions": {
-            "bruksklasser": ["Bk10", "BkT8", "Bk8"]
-          }
-        }
+    "axle_distances": [0, 5565, 1204, 23053, 1495, 1495]
+  },
+  "requirement_tests": [
+    {
+      "test_name": "Enough weight on steering wheels",
+      "pass": false,
+      "reason": "Steering wheels must have at least 20% of total weight"
+    },
+    {
+      "test_name": "Simple test",
+      "pass": true
+    },
+    {
+      "test_name": "Truck is not fucked up",
+      "pass": false,
+      "reason": "More than 69% of the truck is fucked up"
+    },
+    {
+      "test_name": "Driver is not drunk",
+      "pass": true
+    },
+    {
+      "test_name": "Complicated test",
+      "pass": true,
+      "restrictions": {
+        "bruksklasser": ["Bk10", "BkT8", "Bk8"]
       }
-    ]
-  }
+    }
+  ]
 }

@@ -3,3 +3,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.errorContainer {
+  background-color: orange;
+}

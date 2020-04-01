@@ -2,9 +2,9 @@ import React from 'react';
 import './styles.css';
 import { Grid, Paper} from '@material-ui/core';
 
-const RegistrationPlate = () => {
-  const truckPlate = "KJ29203"
-  const trailerPlate = "KS1860"
+const RegistrationPlate = (props) => {
+  const truckPlate = props.truck && props.truck.truck_regnr;
+  const trailerPlate = props.truck && props.truck.trailer_regnr;
   return (
     <div className="RegistrationPlate">
     <Grid container spacing={4}>
